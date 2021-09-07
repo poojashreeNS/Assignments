@@ -1,0 +1,65 @@
+---
+- hosts: servers
+  become: yes  
+  user: sam
+  vars:
+    server_name: "{{ ansible_default_ipv4.address }}"
+    document_root: /var/www/Demo
+  tasks:
+    - name: apt-get update
+      apt:
+       update_cache: yes 
+       cache_valid_time: 3600
+
+    - name: Update apt cache and install Nginx
+      apt:
+        name: nginx
+        state: latest   
+
+    - name: create www directory
+      file:
+       path: "{{ document_root }}" 
+       state: directory
+       mode: '0775'
+       owner: sam	
+       group: sam
+
+    - name: Copy website files to the server's document root
+      copy:
+        src: index.html
+        dest: "{{ document_root }}"
+        mode: preserve
+
+    - name: Apply Nginx template
+      template:
+        src: files/nginx.conf.j2
+        dest: /etc/nginx/sites-available/default
+
+    - name: Create SYMlink
+      file:
+        src: /etc/nginx/sites-available/default
+        dest: /etc/nginx/sites-enabled/default
+        state: link
+    
+    - name: Add index.html file
+      template:
+       src: index.html
+       dest: /usr/share/nginx/html/index.html
+
+    - name: allow all access to tcp port 8080
+      firewalld:
+       port: 8080/tcp
+       zone: public
+       state: enabled
+       permanent: yes
+
+    - name: Restart firewall
+      service:
+       name: firewalld
+       state: restarted
+          
+    - name: Restart Nginx
+      systemd: 
+         name: nginx  
+         state: started
+         enabled: yes

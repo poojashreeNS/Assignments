@@ -1,0 +1,29 @@
+---
+- hosts: all
+  become: yes
+  user: sam
+  tasks:
+    - name: Stop nginx
+      service:
+          name: nginx
+          state: stopped
+ 
+    - name: Remove All Nginx config file
+      file:
+          path: /etc/nginx/
+          state: absent
+
+    - name: Remove Demo files
+      file:
+          path: /var/www/Demo
+          state: absent
+
+    - name: Delete index.html file
+      file:
+          path: /usr/share/nginx/html/index.html
+          state: absent
+
+    - name: Uninstall nginx
+      apt: 
+          name: nginx 
+          state: absent
