@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='nicepage.css')}}" media="screen">
+<link rel="stylesheet" href="{{url_for('static', filename='Home.css')}}"  media="screen">
+    <script class="u-script" type="text/javascript" src="{{url_for('static', filename='nicepage.js')}}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{{url_for('static', filename='jquery.js')}}" defer=""></script>
+    <meta name="generator" content="Nicepage 3.28.7, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arima+Madurai:100,200,300,400,500,700,800,900">
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"logo": "images/TomandJerry.jpeg"
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Home">
+    <meta property="og:type" content="website">
+  </head>
+  <body data-home-page="/index" data-home-page-title="Home" class="u-body"><header class="u-clearfix u-header" id="sec-b710"><div class="u-clearfix u-sheet u-sheet-1">
+        <a href="index" data-page-id="197911287" class="u-image u-logo u-image-1" data-image-width="350" data-image-height="263" title="Home">
+          <img src= "{{ url_for('static', filename='TomandJerry.jpeg') }}" class="u-logo-image u-logo-image-1">
+        </a>
+        <h3 class="u-align-center u-custom-font u-headline u-text u-text-palette-2-base u-text-1">
+          <a href="/index">VOTE FOR YOUR FAVORITE CARTOON CHARACTER</a>
+        </h3>
+        <img class="u-image u-image-default u-image-2" src="{{ url_for('static', filename='1cfe35c6d6b317bd16d2fac75ef91364a432ae3904dcc9675ccde719a9fa15f4a5a49e79f8f2585915587ffeb24d6f1a5b4905fca9977e0aa5d072_1280.png') }}" alt="" data-image-width="1280" data-image-height="1217">
+        <img class="u-image u-image-default u-image-3" src="{{ url_for('static', filename='60c5778cc4dc17aa8af195341323304d7f73585e7e09d866b094de7bc17687c8a7e6e4d755da33ef8f37d65dd924d539eee6533ff082eab654680b_1280.jpg') }}" alt="" data-image-width="989" data-image-height="1280">
+        <form method="POST" action="{{ url_for('counter') }}">
+        <h6 class="u-text u-text-default u-text-2" name='tom'>{{ jerry_count }}  </h6>
+        <h6 class="u-text u-text-default u-text-3" name='jerry'>{{ tom_count }} </h6>
+        <form method="POST" action="{{ url_for('counter') }}">
+        <button class="u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-btn-1"type="submit" value="ctom" name="tom">VOTE</button>
+        <button class="u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-btn-2" type="submit" value="cjerry" name="jerry">VOTE</button>
+        </form>
+      </div></header> 
+  </body>
+</html>
